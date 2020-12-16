@@ -1,0 +1,96 @@
+# All about values
+
+```{R}
+4 + 8
+
+"pie"
+
+4
+
+print("pie")
+
+x <- 13
+x + 4
+
+20.3
+20
+
+5.0 / 2.0
+5L %/% 2L
+
+"any text you want"
+'this is also a string'
+
+# Booleans
+
+TRUE
+FALSE
+
+4 > 3
+
+3 > 4
+
+TRUE && TRUE
+4 > 3 && -1 < 0
+TRUE && FALSE
+1 > 0 && 1 < 0
+FALSE && TRUE
+FALSE && FALSE
+
+1 < 0 || 2 + 2 == 4
+
+5 != 4
+1 != 1
+
+```
+
+# Boolean values let us ask questions and make decisions based on the answer
+
+This is a Markdown cell.
+
+- and is written `&&`
+- or is written `||`
+- equal to is written `==`
+- not equal to is written `!=`
+```{R}
+
+
+
+if (is.na(is_married)) {
+    paste("Hello Ms" , last_name)
+} else {
+    if (is_married && (age > 18 || gender == "female")) {
+        paste("Hello Mrs.", last_name)
+    } else if (age > 18) {
+        paste("Hello Miss", last_name)
+    } else {
+        paste("Hello", first_name)
+    }
+}
+
+
+```
+
+# Do the same thing for another person
+
+```{R}
+first_name <- "Zoey"
+last_name <- "Bryant"
+is_married <- TRUE
+age <- 23
+
+if (is.na(is_married)) {
+    paste("Hello Ms" , last_name)
+} else {
+    if (is_married && (age > 18 || gender == "female")) {
+        paste("Hello Mrs.", last_name)
+    } else if (age > 18) {
+        paste("Hello Miss", last_name)
+    } else {
+        paste("Hello", first_name)
+    }
+}
+
+
+```
+
