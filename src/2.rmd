@@ -1,0 +1,55 @@
+# Functions
+
+This is not good code. Why? Because we repeated a huge chunk of information,
+with only a few minor changes. Duplication is evil. Copy and paste is a great way
+to write spaghetti code.
+
+The answer is an abstraction called a function. Functions let us describe
+actions or computations that are similar in structure but have different inputs.
+That way we only have to write the parts that differ.
+
+DRY = Don't Repeat Yourself
+DRY code is good code!
+
+```{R}
+
+greet <- function(first_name, last_name, is_married, age) {
+    if (is.na(is_married)) {
+        paste("Hello Ms", last_name)
+    } else {
+        if (is_married && (age > 18 || gender == "female")) {
+            paste("Hello Mrs.", last_name)
+        } else if (age > 18) {
+            paste("Hello Miss", last_name)
+        } else {
+            paste("Hello", first_name)
+        }
+    }
+}
+
+# No repetition!
+greet("Sue", "Thomas", FALSE, 16)
+greet("Zoey", "Bryant", TRUE, 23)
+```
+
+```{R}
+
+greet <- function(first_name, last_name, is_married = FALSE, age) {
+    if (is.na(is_married)) {
+        paste("Hello Ms", last_name)
+    } else {
+        if (is_married && (age > 18 || gender == "female")) {
+            paste("Hello Mrs.", last_name)
+        } else if (age > 18) {
+            paste("Hello Miss", last_name)
+        } else {
+            paste("Hello", first_name)
+        }
+    }
+}
+
+# No repetition!
+greet(age = 20, first_name = "Jasmine", last_name = "Patterson", is_married = FALSE)
+greet(age = 20, first_name = "Jasmine", last_name = "Patterson")
+greet(age = 20, first_name = "Jasmine", last_name = "Patterson", is_married = TRUE)
+```
