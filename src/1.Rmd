@@ -54,7 +54,10 @@ This is a Markdown cell.
 - not equal to is written `!=`
 ```{R}
 
-
+first_name <- "Sue"
+last_name <- "Thomas"
+is_married <- FALSE
+age <- 16
 
 if (is.na(is_married)) {
     paste("Hello Ms" , last_name)
