@@ -1,0 +1,41 @@
+```{R}
+n <- sample(1:10, 1)
+guess <- readline("Guess a number between 1 and 10.\n")
+while (guess != n) {
+    if (guess < n) {
+        print("Too low.")
+    } else {
+        print("Too high.")
+    }
+    guess <- readline("Pick another number.\n")
+}
+
+print("You're correct!!!")
+```
+
+# Print the numbers 1 through 100. If the the number is divisible by 3, print
+# Fizz instead. If the number is divisble by 5, print Buzz. If it is divisble by
+# both 3 and 5, print FizzBuzz.
+
+```{R}
+numbers <- 1:100
+i <- 1
+# FIX ME: We shouldn't hard code the upper limit. If the length of numbers
+# changes we could forget to update it.
+while (i <= 100) {
+    n <- numbers[[i]]
+    if (n %% 15 == 0) {
+        print("FizzBuzz")
+    }
+    else if (n %% 3 == 0) {
+        print("Fizz")
+    }
+    else if (n %% 5 == 0) {
+        print("Buzz")
+    }
+    else {
+        print(n)
+    }
+    i <- i + 1
+}
+```
