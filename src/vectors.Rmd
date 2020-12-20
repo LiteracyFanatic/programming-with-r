@@ -20,9 +20,7 @@ print("You're correct!!!")
 ```{R}
 numbers <- 1:100
 i <- 1
-# FIX ME: We shouldn't hard code the upper limit. If the length of numbers
-# changes we could forget to update it.
-while (i <= 100) {
+while (i <= length(numbers)) {
     n <- numbers[[i]]
     if (n %% 15 == 0) {
         print("FizzBuzz")
