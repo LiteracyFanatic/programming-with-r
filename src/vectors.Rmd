@@ -1,16 +1,18 @@
 ```{R}
-n <- sample(1:10, 1)
-guess <- readline("Guess a number between 1 and 10.\n")
-while (guess != n) {
-    if (guess < n) {
-        print("Too low.")
-    } else {
-        print("Too high.")
+guess_the_number <- function() {
+    n <- sample(1:10, 1)
+    guess <- readline("Guess a number between 1 and 10.\n")
+    while (guess != n) {
+        if (guess < n) {
+            print("Too low.")
+        } else {
+            print("Too high.")
+        }
+        guess <- readline("Pick another number.\n")
     }
-    guess <- readline("Pick another number.\n")
-}
 
-print("You're correct!!!")
+    print("You're correct!!!")
+}
 ```
 
 Print the numbers 1 through 100. If the the number is divisible by 3, print Fizz
