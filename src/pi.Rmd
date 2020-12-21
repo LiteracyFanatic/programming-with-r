@@ -1,0 +1,15 @@
+This YouTube [video](https://www.youtube.com/watch?v=etx0k1nLn78) contains some
+interesting discussion about misleading statistical analyses of the 2020 US
+election results. At one point, the presenter uses a histogram of the first
+2,069 pairs of digits in pi as point of comparison.
+
+Let's recreate this graphic using R. The first million digits of pi have been
+provided in `data/pi_dec_1m.txt`. The `readr` package from the `tidyverse`
+provides a `read_file` function we can use to load the data.
+
+What does the distribution look like? Does it match the one shown in the video?
+Does the distribution change if we use a larger sample?
+
+```{R}
+
+```
