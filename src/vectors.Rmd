@@ -13,9 +13,9 @@ while (guess != n) {
 print("You're correct!!!")
 ```
 
-# Print the numbers 1 through 100. If the the number is divisible by 3, print
-# Fizz instead. If the number is divisble by 5, print Buzz. If it is divisble by
-# both 3 and 5, print FizzBuzz.
+Print the numbers 1 through 100. If the the number is divisible by 3, print Fizz
+instead. If the number is divisble by 5, print Buzz. If it is divisble by both 3
+and 5, print FizzBuzz.
 
 ```{R}
 numbers <- 1:100
@@ -36,4 +36,122 @@ while (i <= length(numbers)) {
     }
     i <- i + 1
 }
+```
+
+```{R}
+library(tidyverse)
+library(ggrepel)
+
+newton <- function(f, f_prime, guess, tolerance = 0.001) {
+    x <- c(guess)
+    err <- f(x[[1]])
+    while (abs(err) > tolerance) {
+        x <- c(x[[1]] - f(x[[1]]) / f_prime(x[[1]]), x)
+        err <- f(x[[1]]) > tolerance
+    }
+    rev(x)
+}
+
+plot_newton <- function(f, f_prime, guess, tolerance = 0.001) {
+    points <- tibble(
+        x = newton(f, f_prime, guess, tolerance),
+        y = f(x),
+        names = seq_along(x)
+    )
+
+    ggplot(data = points, aes(x, y, label=names)) +
+        geom_function(fun = f) +
+        geom_point() +
+        geom_point(aes(last(x), last(y)), color = "green") +
+        geom_label_repel(direction = "y")
+}
+
+newton(function(x) x**2 - 53, function(x) 2 * x, 1)
+plot_newton(function(x) x**2 - 53, function(x) 2 * x, 1)
+```
+
+```{R}
+x <- seq(-2 * pi, 2 * pi, 0.1)
+y <- vector("numeric", length(x))
+
+for (i in 1:length(x)) {
+   y[[i]] <- sin(x[[i]])
+}
+
+plot(x, y)
+```
+
+```{R}
+empty <- numeric()
+1:length(empty)
+
+x <- seq(-2 * pi, 2 * pi, 0.1)
+y <- numeric(length(x))
+
+for (i in seq_along(x)) {
+    y[[i]] <- sin(x[[i]])
+}
+
+plot(x, y)
+```
+
+```{R}
+fizz_buzz <- function(n) {
+    if (n %% 15 == 0) {
+        "FizzBuzz"
+    }
+    else if (n %% 3 == 0) {
+        "Fizz"
+    }
+    else if (n %% 5 == 0) {
+        "Buzz"
+    }
+    else {
+        n
+    }
+}
+
+for (n in 1:100) {
+    print(fizz_buzz(n))
+}
+```
+
+```{R}
+alphabet <- character()
+alphabet <- c(alphabet, "a")
+alphabet <- c(alphabet, "b")
+alphabet <- c(alphabet, "c")
+```
+
+```{R}
+nums <- c(5, 7, 8, -2, -3, 89, 77, -3, 0, 5, -2, 77, -27, -34)
+positive_nums <- numeric()
+for (num in nums) {
+    if (num > 0) {
+        positive_nums = c(positive_nums, num)
+    }
+}
+
+positive_nums
+```
+
+```{R}
+moving_average <- function(nums, window_size) {
+    if (length(nums) < window_size) {
+        stop("nums must be at least as long as window_size.")
+    } else if (length(nums) == window_size) {
+        sum(nums) / window_size
+    }
+
+    number_of_windows <- length(nums) - window_size + 1
+    ret <- numeric(number_of_windows)
+    for (i in 1:number_of_windows) {
+        window_start <- i
+        window_end <- window_start + window_size - 1
+        ret[[i]] <- sum(nums[window_start:window_end]) / window_size
+    }
+    ret
+}
+
+moving_average(1:10, 4)
 ```
