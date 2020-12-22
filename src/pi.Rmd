@@ -11,5 +11,43 @@ What does the distribution look like? Does it match the one shown in the video?
 Does the distribution change if we use a larger sample?
 
 ```{R}
+library(tidyverse)
 
+# Read in digits of pi and remove decimal point
+pi_digits <- read_file("data/pi_dec_1m.txt")
+pi_digits <- str_remove_all(pi_digits, "\\.")
+
+# Create vector with keys "00", "01", ... "99" each with an initial value of 0
+keys <- sprintf("%02d", 0:99)
+values <- rep(0, 100)
+pairs <- setNames(values, keys)
+
+# Count the number of occurrences of each pair
+for (i in seq(1, 2 * 2069, 2)) {
+    pair <- str_sub(pi_digits, i, i + 1)
+    pairs[[pair]] <- pairs[[pair]] + 1
+}
+
+# Plot a histogram of the data to examine its distribution
+plot_hist <- function(pairs) {
+    data <- tibble(
+        pair = names(pairs),
+        count = pairs
+    )
+
+    ggplot(data) +
+        geom_col(aes(pair, count), fill = "green4") +
+        scale_x_discrete(breaks = c("00", "50", "99")) +
+        labs(
+            title = "RANDOM: frequency of digit pairs in π",
+            x = "",
+            y = ""
+        ) +
+        theme(
+            plot.title = element_text(color = "green4", size = 20, hjust = 0.5),
+            aspect.ratio = 3/8
+        )
+}
+
+plot_hist(pairs)
 ```
