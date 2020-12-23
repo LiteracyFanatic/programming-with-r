@@ -11,7 +11,21 @@ By considering the terms in the Fibonacci sequence whose values do not exceed
 four million, find the sum of the even-valued terms.
 
 ```{R}
+a <- 0
+b <- 1
+c <- a + b
+sum <- 0
 
+while (c <= 4e6) {
+    if (c %% 2 == 0) {
+        sum <- sum + c
+    }
+    a <- b
+    b <- c
+    c <- a + b
+}
+
+sum
 ```
 
 ## [Question 5](https://projecteuler.net/problem=5)
@@ -23,5 +37,14 @@ What is the smallest positive number that is evenly divisible by all of the
 numbers from 1 to 20?
 
 ```{R}
+test <- function(n) {
+    all(n %% 1:20 == 0)
+}
 
+n <- 20
+while (!test(n)) {
+   n <- n + 20
+}
+
+n
 ```
