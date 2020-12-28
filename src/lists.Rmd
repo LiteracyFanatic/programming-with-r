@@ -1,0 +1,105 @@
+## Lists
+
+```{R}
+x <- list(
+    "bob",
+    "george",
+    17,
+    c("a", "b", "c"),
+    1:10,
+    list("a", 6, TRUE)
+)
+
+x
+str(x)
+
+x[[4]][[2]]
+
+str(x[1])
+str(x[[1]])
+```
+
+## Modeling data
+
+```{R}
+# Represent people as a group of variables
+id <- c(1, 2, 3)
+names <- c("bob", "george", "sue")
+ages <- c(12, 22, 17)
+likes_ice_cream <- c(TRUE, FALSE, TRUE)
+
+# Look up values for bob
+key <- id[names == "bob"]
+names[[key]]
+ages[[key]]
+likes_ice_cream[[key]]
+
+id <- id[order(ages)]
+names <- names[order(ages)]
+ages <- ages[order(ages)]
+likes_ice_cream <- likes_ice_cream[order(ages)]
+
+id[1:2]
+names[1:2]
+ages[1:2]
+likes_ice_cream[1:2]
+
+people <- list(
+    list(id = 1, name = "bob", age = 12, likes_ice_cream = TRUE),
+    list(id = 2, name = "george", age = 22, likes_ice_cream = FALSE),
+    list(id = 3, name = "sue", age = 17, likes_ice_cream = TRUE)
+)
+
+people <- list(
+    ids = c(1, 2, 3),
+    names = c("bob", "george", "sue", "asldjf", "alskjf"),
+    ages = c(12, 22, 17),
+    likes_ice_cream = c(TRUE, FALSE, TRUE)
+)
+
+str(people)
+```
+
+## Data Frames
+
+```{R}
+people <- data.frame(
+    ids = c(1, 2, 3),
+    names = c("bob", "george", "sue"),
+    ages = c(12, 22, 17),
+    likes_ice_cream = c(TRUE, FALSE, TRUE),
+    stringsAsFactors = FALSE
+)
+
+str(people)
+attributes(people)
+
+min(people[["ages"]])
+min(people$ages)
+
+people[order(people$ages)]
+
+birth_continent <- factor(
+    x = c("asia", "asia", "africa", "europe", "narnia"),
+    levels = c("europe", "asia", "africa", "australia", "south america", "north america", "antarctica")
+)
+
+str(birth_continent)
+attributes(birth_continent)
+```
+
+## Tibbles
+
+```{R}
+library(tidyverse)
+
+people <- tibble(
+    ids = c(1, 2, 3),
+    names = c("bob", "george", "sue"),
+    ages = c(12, 22, 17),
+    likes_ice_cream = c(TRUE, FALSE, TRUE)
+)
+
+str(people)
+attributes(people)
+```
