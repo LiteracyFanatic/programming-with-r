@@ -1,0 +1,44 @@
+```{R}
+library(tidyverse)
+library(lubridate)
+```
+
+```{R}
+raw_data <- read_csv("data/speed.csv") %>%
+    group_by(hour = hour(time))
+
+raw_data
+
+summary(raw_data$speed)
+
+raw_data %>%
+    ggplot() +
+    geom_histogram(aes(speed), binwidth = 1)
+
+raw_data %>%
+    ggplot() +
+    geom_boxplot(aes(hour, speed, group = hour))
+
+raw_data %>%
+    filter(speed > 25) %>%
+    nrow()
+
+raw_data %>%
+    filter(speed == 0) %>%
+    nrow()
+```
+
+```{R}
+filtered_data <- raw_data %>%
+    filter(speed > 0 & speed < 25)
+```
+
+```{R}
+filtered_data %>%
+    ggplot() +
+    geom_boxplot(aes(hour, speed, group = hour))
+
+filtered_data %>%
+    ggplot() +
+    geom_smooth(aes(hour, speed))
+```
